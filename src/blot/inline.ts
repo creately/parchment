@@ -105,8 +105,10 @@ class InlineBlot extends ParentBlot implements Formattable {
       this.formats()[name] != null ||
       this.scroll.query(name, Scope.ATTRIBUTE)
     ) {
-      const blot = this.isolate(index, length) as InlineBlot;
-      blot.format(name, value);
+      const blot = this.isolate(index, length);
+      if (blot instanceof InlineBlot ) {
+        blot.format(name, value);
+      }
     } else {
       super.formatAt(index, length, name, value);
     }
